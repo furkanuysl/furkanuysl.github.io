@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Furkan Uysal — Oyun Geliştirici</title>
+    <meta name="description" content="Furkan Uysal — Unreal Engine oyun geliştiricisi. Etkileşimli CV: adayı gez, bölgeleri keşfet, projeleri incele." />
+    <meta name="theme-color" content="#03201E" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2300534E%22/%3E%3Cpath d=%22M9 13h4m-2-2v4M20 12h.01M23 15h.01%22 stroke=%22white%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%225%22 y=%228%22 width=%2222%22 height=%2214%22 rx=%227%22 fill=%22none%22 stroke=%22white%22 stroke-width=%222%22/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Russo+One&family=Archivo:wdth,wght@62..125,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="stage" aria-hidden="true"></div>
+
+    <!-- ── Start screen ─────────────────────────────── -->
+    <section id="start" class="start" aria-labelledby="start-title">
+      <button class="lang-btn start__lang" type="button" data-lang-toggle>EN</button>
+      <div class="start__inner">
+        <p class="start__kicker" id="start-role">Oyun Geliştirici</p>
+        <h1 class="start__title" id="start-title">Furkan Uysal</h1>
+        <p class="start__sub" id="start-sub"></p>
+        <button id="start-btn" class="btn btn--primary btn--xl" type="button" disabled>
+          <span class="start__loading" data-i18n="loading">Yükleniyor…</span><span class="start__ready" data-i18n="start">Oyuna Başla</span>
+        </button>
+        <p class="start__keys" data-i18n-html="startKeys"><kbd>Enter</kbd> ile başla</p>
+        <button id="start-classic" class="btn btn--link" type="button" data-i18n="skipGame">Oyun istemiyorum — klasik CV'yi göster</button>
+      </div>
+    </section>
+
+    <!-- ── HUD ───────────────────────────────────────── -->
+    <div id="hud" class="hud" hidden>
+      <div class="hud__player">
+        <div class="avatar" id="hud-avatar" aria-hidden="true">FU</div>
+        <div class="hud__player-info">
+          <span class="hud__name" id="hud-name">Furkan Uysal</span>
+          <span class="hud__level"><span id="hud-lvl">LVL 1</span> · <span id="hud-role">Oyun Geliştirici</span></span>
+          <div class="xp" role="progressbar" data-i18n-aria="progress" aria-label="Keşif ilerlemesi" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="xp">
+            <span class="xp__fill" id="xp-fill"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud__actions">
+        <button class="icon-btn lang-btn" type="button" data-lang-toggle>EN</button>
+        <button class="icon-btn" id="btn-classic" type="button" data-i18n-aria="classicCv" aria-label="Klasik CV">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          <span data-i18n="classicCv">Klasik CV</span>
+        </button>
+        <button class="icon-btn" id="btn-sound" type="button" aria-label="Sesi kapat" aria-pressed="false">
+          <svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5zM22 9l-6 6M16 9l6 6"/></svg>
+        </button>
+        <button class="icon-btn" id="btn-help" type="button" data-i18n-aria="help" aria-label="Kontroller ve yardım">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+        </button>
+      </div>
+
+      <aside class="quests" data-i18n-aria="quests" aria-label="Görevler">
+        <h2 class="quests__title" data-i18n="quests">Görevler</h2>
+        <ul id="quest-list"></ul>
+      </aside>
+
+      <canvas id="minimap" class="minimap" width="160" height="160" aria-hidden="true"></canvas>
+
+      <button id="prompt" class="prompt" type="button" hidden>
+        <kbd>E</kbd> <span id="prompt-text"></span>
+      </button>
+
+      <p class="hint" id="hint" data-i18n-html="hint"><kbd>WASD</kbd> yürü · <kbd>Space</kbd> zıpla · <kbd>E</kbd> incele · ya da yere <b>tıkla</b></p>
+
+      <div id="joystick" class="joystick" aria-hidden="true"><div class="joystick__knob"></div></div>
+      <button id="btn-jump" class="jump-btn" type="button" data-i18n-aria="jump" aria-label="Zıpla">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
+    </div>
+
+    <div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+    <!-- ── Info panel ───────────────────────────────── -->
+    <dialog id="panel" class="panel" aria-labelledby="panel-title">
+      <div class="panel__frame">
+        <header class="panel__header">
+          <div>
+            <p class="panel__kicker"></p>
+            <h2 class="panel__title" id="panel-title"></h2>
+          </div>
+          <button class="icon-btn panel__close" type="button" data-i18n-aria="close" aria-label="Kapat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </header>
+        <div class="panel__body"></div>
+        <footer class="panel__footer" data-i18n-html="escClose"><kbd>Esc</kbd> ile kapat</footer>
+      </div>
+    </dialog>
+
+    <!-- ── Classic CV (React + Tailwind, loaded on demand) ── -->
+    <div id="classic" hidden></div>
+
+    <noscript>
+      <p style="padding:2rem;color:#fff">Bu CV'yi gezmek için JavaScript'i etkinleştir.</p>
+    </noscript>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
