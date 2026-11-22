@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cv:pdf": "node scripts/cv-pdf.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

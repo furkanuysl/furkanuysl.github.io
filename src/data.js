@@ -45,7 +45,8 @@ export const profile = {
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/furkan-uysal-41490321a/' },
     { label: 'GitHub', url: 'https://github.com/furkanuysl' },
   ],
-  cvPdf: '', // örn. './Furkan_Uysal_CV.pdf' (dosyayı public/ klasörüne koy) — boşsa buton gizlenir
+  // ATS uyumlu PDF'ler: `npm run cv:pdf` ile bu dosyadan üretilir (public/ altına). Boşsa buton gizlenir.
+  cvPdf: { tr: 'Furkan_Uysal_CV_TR.pdf', en: 'Furkan_Uysal_CV_EN.pdf' },
 };
 
 // Proje görselleri public/projects/ altında
@@ -98,10 +99,10 @@ export const games = [
     tech: ['Unity 6', 'C#', 'Event Bus', 'Object Pooling'],
     description: {
       tr:
-        'Oyuncunun vale otoparkları kurup büyüttüğü mobil idle/tycoon oyunu. ~24.000 satırlık modüler kod tabanı, çevrimdışı ' +
+        'Oyuncunun vale otoparkları kurup büyüttüğü mobil idle/tycoon oyunu. Modüler kod tabanı, çevrimdışı ' +
         'kazanç ve prestij ekonomisi, trafik/yaya/vale yapay zekâsı, günlük görevler ve mobil optimizasyon.',
       en:
-        'A mobile idle/tycoon game where players build and grow valet parking businesses. A ~24k-line modular codebase, offline ' +
+        'A mobile idle/tycoon game where players build and grow valet parking businesses. A modular codebase, offline ' +
         'earnings and prestige economy, traffic/pedestrian/valet AI, daily tasks and mobile optimization.',
     },
     images: shots('valet', [6, 7, 8, 9]),
@@ -425,8 +426,8 @@ export const experience = [
     period: { tr: '2023 — Şimdi', en: '2023 — Present' },
     points: [
       {
-        tr: 'Unity ve C# ile mobil oyunlar geliştirdim: 3D küp puzzle Kubiko, 30 mini oyunlu parti oyunu Cep Arenası ve ~24.000 satırlık idle/tycoon oyunu Valet City.',
-        en: 'Built mobile games in Unity and C#: the 3D cube puzzle Kubiko, the 30-mini-game party game Pocket Arena and the ~24k-line idle/tycoon game Valet City.',
+        tr: 'Unity ve C# ile mobil oyunlar geliştirdim: 3D küp puzzle Kubiko, 30 mini oyunlu parti oyunu Cep Arenası ve idle/tycoon oyunu Valet City.',
+        en: 'Built mobile games in Unity and C#: the 3D cube puzzle Kubiko, the 30-mini-game party game Pocket Arena and the idle/tycoon game Valet City.',
       },
       {
         tr: 'İşletmeler için SEO odaklı kurumsal siteler geliştirip yayına aldım: 06 May Oto Elektrik (Next.js), Tayra Interactive (React, SSR) ve Tetik Yol Yardım (Preact, pre-render).',

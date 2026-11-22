@@ -1,5 +1,5 @@
 import { useState, useSyncExternalStore, type CSSProperties, type ReactNode } from 'react';
-import { ArrowUpRight, Check, Copy, Gamepad2, Languages, Mail, MapPin, Play, Printer } from 'lucide-react';
+import { ArrowUpRight, Check, Copy, FileDown, Gamepad2, Languages, Mail, MapPin, Play } from 'lucide-react';
 
 import { profile, games, apps, skills, experience, education } from '../data.js';
 import { L as pick, t as tr, getLang, setLang, onLangChange } from '../i18n.js';
@@ -156,14 +156,16 @@ export default function ClassicApp({ onBack }: { onBack: () => void }) {
               <Languages className="size-4 text-(--c-primary)" aria-hidden="true" />
               {lang === 'tr' ? 'EN' : 'TR'}
             </button>
-            <button
-              type="button"
-              onClick={() => window.print()}
-              aria-label={t('print')}
-              className="inline-flex h-10 cursor-pointer items-center gap-2 px-3 text-sm font-bold text-(--c-ink) transition-colors hover:bg-(--c-soft)"
-            >
-              <Printer className="size-4" /> <span className="hidden md:inline">{t('print')}</span>
-            </button>
+            {profile.cvPdf && (
+              <a
+                href={L(profile.cvPdf)}
+                download
+                aria-label={t('downloadPdf')}
+                className="inline-flex h-10 cursor-pointer items-center gap-2 px-3 text-sm font-bold text-(--c-ink) transition-colors hover:bg-(--c-soft)"
+              >
+                <FileDown className="size-4" /> <span className="hidden md:inline">{t('downloadPdf')}</span>
+              </a>
+            )}
             <button
               type="button"
               onClick={onBack}

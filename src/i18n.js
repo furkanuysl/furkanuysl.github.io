@@ -85,6 +85,7 @@ const STRINGS = {
     // classic CV
     backToGame: 'Oyuna dön',
     print: 'Yazdır',
+    downloadPdf: 'PDF İndir',
     email: 'E-posta',
     phone: 'Telefon',
     location: 'Konum',
@@ -153,6 +154,7 @@ const STRINGS = {
     cvPdf: 'CV (PDF)',
     backToGame: 'Back to game',
     print: 'Print',
+    downloadPdf: 'Download PDF',
     email: 'Email',
     phone: 'Phone',
     location: 'Location',
