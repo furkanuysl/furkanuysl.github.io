@@ -879,6 +879,18 @@ body {
   font-size: 13px;
   white-space: nowrap;
 }
+.shots {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.shots img {
+  display: block;
+  height: 130px;
+  width: auto;
+  border-radius: 8px;
+}
 .card__role {
   font-size: 14px;
   font-weight: 600;
@@ -1137,4 +1149,119 @@ html.classic-open #start {
     display: none !important;
   }
 }
+}
+
+/* Image popup (src/lightbox.js) — unlayered so it applies on both game and classic pages */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 64px 80px;
+  border: 0;
+  background: rgb(3 18 17 / 0.94);
+  color: #fff;
+  touch-action: pan-y;
+}
+.lightbox[open] {
+  display: grid;
+  place-items: center;
+}
+.lightbox::backdrop {
+  background: transparent;
+}
+/* frame shrinks to the image, so the buttons sit right at its edges */
+.lightbox__frame {
+  position: relative;
+  display: flex;
+}
+.lightbox__img {
+  display: block;
+  max-width: min(calc(100vw - 160px), 960px);
+  max-height: 78dvh;
+  object-fit: contain;
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.lightbox__btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.12);
+  color: #fff;
+  cursor: pointer;
+}
+.lightbox__btn svg {
+  display: block;
+  flex: none;
+}
+.lightbox__btn:hover,
+.lightbox__btn:focus-visible {
+  background: rgb(255 255 255 / 0.25);
+  outline: none;
+}
+.lightbox__close {
+  top: -56px;
+  right: 0;
+  width: 44px;
+  height: 44px;
+}
+.lightbox__prev,
+.lightbox__next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lightbox__prev {
+  right: calc(100% + 12px);
+}
+.lightbox__next {
+  left: calc(100% + 12px);
+}
+.lightbox--single .lightbox__prev,
+.lightbox--single .lightbox__next,
+.lightbox--single .lightbox__count {
+  display: none;
+}
+.lightbox__count {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+/* phones: no room beside the image, so arrows overlay its edges */
+@media (max-width: 640px) {
+  .lightbox {
+    padding: 64px 16px;
+  }
+  .lightbox__img {
+    max-width: calc(100vw - 32px);
+    max-height: 72dvh;
+  }
+  .lightbox__prev,
+  .lightbox__next {
+    background: rgb(3 18 17 / 0.6);
+  }
+  .lightbox__prev {
+    right: auto;
+    left: 8px;
+  }
+  .lightbox__next {
+    left: auto;
+    right: 8px;
+  }
 }

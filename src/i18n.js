@@ -98,7 +98,7 @@ const STRINGS = {
     contact: 'İletişim',
     current: 'Güncel',
     watchGameplay: 'Oynanış videolarını izle',
-    contactHeadline: ['Bir sonraki oyunu', 'birlikte', 'yapalım.'],
+    contactHeadline: ['Bir sonraki projeyi', 'birlikte', 'geliştirelim.'],
     playableVersion: "Bu CV'nin oynanabilir hâli → adayı gez",
   },
   en: {
@@ -166,7 +166,7 @@ const STRINGS = {
     contact: 'Contact',
     current: 'Current',
     watchGameplay: 'Watch gameplay videos',
-    contactHeadline: ["Let's build your next game", 'together', '.'],
+    contactHeadline: ["Let's build your next project", 'together', '.'],
     playableVersion: 'Playable version of this CV → explore the island',
   },
 };

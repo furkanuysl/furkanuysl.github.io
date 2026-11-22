@@ -29,6 +29,7 @@ type Project = {
   tech: Text[];
   description: Text;
   link?: string;
+  images?: string[];
 };
 
 // Re-render the page whenever the language changes
@@ -92,6 +93,20 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
       </div>
       <h3 className={cn('mt-5 text-2xl leading-tight text-(--c-ink)', condensed)}>{L(p.title)}</h3>
       {p.role && <p className="mt-1 text-sm font-semibold text-(--c-accent)">{L(p.role)}</p>}
+      {p.images?.length ? (
+        <div data-gallery className="-mx-6 mt-5 flex snap-x gap-2 overflow-x-auto px-6 pb-2 print:hidden">
+          {p.images.map((src, i) => (
+            <a key={src} href={src} target="_blank" rel="noopener" className="shrink-0 snap-start">
+              <img
+                src={src}
+                alt={`${L(p.title)} ${i + 1}`}
+                loading="lazy"
+                className="h-44 w-auto border border-(--c-line) object-cover transition-opacity hover:opacity-85"
+              />
+            </a>
+          ))}
+        </div>
+      ) : null}
       <p className="mt-3 text-[15px] leading-relaxed text-(--c-muted)">{L(p.description)}</p>
       <ul className="mt-auto flex flex-wrap gap-x-3 gap-y-1 pt-5 text-xs font-bold tracking-wide text-(--c-ink) uppercase">
         {p.tech.map((x) => (
@@ -166,7 +181,7 @@ export default function ClassicApp({ onBack }: { onBack: () => void }) {
           <div className="md:col-span-8">
             <p className="flex items-center gap-3 text-sm font-bold tracking-[0.18em] text-(--c-accent) uppercase">
               <span className="h-0.5 w-10 bg-(--c-accent)" aria-hidden="true" />
-              {L(profile.title)} · Unreal Engine
+              {L(profile.title)}
             </p>
             <h1 className={cn('mt-6 text-[17vw] leading-[0.82] text-(--c-ink) uppercase sm:text-8xl md:text-[8.5rem]', condensed)}>
               {firstName}
@@ -237,17 +252,6 @@ export default function ClassicApp({ onBack }: { onBack: () => void }) {
       <main className="mx-auto max-w-6xl px-5">
         <Row id="about" no="01" title={t('about')}>
           <p className="max-w-3xl text-xl leading-relaxed text-(--c-ink) md:text-2xl md:leading-relaxed">{L(profile.summary)}</p>
-          {profile.portfolio && (
-            <a href={profile.portfolio} target="_blank" rel="noopener" className="group mt-8 inline-flex items-center gap-4 print:hidden">
-              <span className="grid size-14 place-items-center rounded-full bg-(--c-primary) text-(--c-on-primary) transition-transform group-hover:scale-110">
-                <Play className="size-5 translate-x-0.5 fill-current" aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-xs font-bold tracking-[0.2em] text-(--c-muted) uppercase">{t('portfolio')}</span>
-                <span className="text-lg font-bold underline-offset-4 group-hover:underline">{t('watchGameplay')}</span>
-              </span>
-            </a>
-          )}
         </Row>
 
         <Row id="experience" no="02" title={t('experience')}>
@@ -264,7 +268,7 @@ export default function ClassicApp({ onBack }: { onBack: () => void }) {
                   )}
                 </div>
                 <div>
-                  <h3 className={cn('text-2xl leading-tight md:text-3xl', condensed)}>{e.role}</h3>
+                  <h3 className={cn('text-2xl leading-tight md:text-3xl', condensed)}>{L(e.role)}</h3>
                   <p className="mt-1 font-semibold text-(--c-muted)">{e.company}</p>
                   <ul className="mt-4 grid gap-2.5 text-[15px] leading-relaxed text-(--c-ink)/85">
                     {e.points.map((pt) => (
@@ -281,6 +285,17 @@ export default function ClassicApp({ onBack }: { onBack: () => void }) {
         </Row>
 
         <Row id="games" no="03" title={t('games')}>
+          {profile.portfolio && (
+            <a href={profile.portfolio} target="_blank" rel="noopener" className="group mb-8 inline-flex items-center gap-4 print:hidden">
+              <span className="grid size-14 place-items-center rounded-full bg-(--c-primary) text-(--c-on-primary) transition-transform group-hover:scale-110">
+                <Play className="size-5 translate-x-0.5 fill-current" aria-hidden="true" />
+              </span>
+              <span>
+                <span className="block text-xs font-bold tracking-[0.2em] text-(--c-muted) uppercase">{t('portfolio')}</span>
+                <span className="text-lg font-bold underline-offset-4 group-hover:underline">{t('watchGameplay')}</span>
+              </span>
+            </a>
+          )}
           <div className="grid gap-px border border-(--c-line) bg-(--c-line) sm:grid-cols-2">
             {(games as Project[]).map((p, i) => (
               <ProjectCard key={L(p.title)} p={p} index={i} />

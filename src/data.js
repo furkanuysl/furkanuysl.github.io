@@ -6,10 +6,10 @@
 export const profile = {
   name: 'Furkan Uysal',
   initials: 'FU',
-  title: { tr: 'Oyun Geliştirici', en: 'Game Developer' },
+  title: { tr: 'Yazılım Geliştirici', en: 'Software Developer' },
   subtitle: {
-    tr: 'Unreal Engine ile oynanış sistemleri, boss AI ve etkileşimli 3D deneyimler.',
-    en: 'Gameplay systems, boss AI and interactive 3D experiences built with Unreal Engine.',
+    tr: 'Oyunlardan web panellerine ve masaüstü uygulamalarına kadar, fikirden yayına uçtan uca yazılım geliştiriyorum.',
+    en: 'I build software end to end, from games to web dashboards and desktop apps, taking ideas all the way to release.',
   },
   location: 'Çubuk, Ankara',
   email: 'm.furkanysl@gmail.com',
@@ -17,22 +17,24 @@ export const profile = {
   available: false, // true yaparsan "Yeni projelere açığım" rozeti görünür
   summary: {
     tr:
-      'Unreal Engine ile 3+ yıllık uygulamalı deneyime sahip bir oyun geliştiricisiyim. Oynanış sistemleri, ' +
-      'yapay zekâ davranışları, gerçek zamanlı simülasyonlar ve etkileşimli 3D uygulamalar üzerine uzmanlaştım. ' +
-      'Souls-like dövüş mekanikleri, boss AI tasarımı, karakter fiziği ve mimari görselleştirme konularında güçlü ' +
-      'bir geçmişim var; buna web geliştirme ve Electron tabanlı masaüstü araç deneyimi de ekleniyor. ' +
-      'Bilgisayar Programcılığı altyapısının ardından şu an Yönetim Bilişim Sistemleri okuyorum.',
+      '2021’den beri yazılım geliştiren, oyun ve web tarafında ürünleri baştan sona kendisi kurup yayına alan bir geliştiriciyim. ' +
+      'Unreal Engine ile Souls-like dövüş sistemleri, boss yapay zekâları ve etkileşimli mimari görselleştirmeler geliştirdim; ' +
+      'C++ ile sunucu otoriteli çok oyunculu bir oyun, Unity ile mobil puzzle, parti ve idle/tycoon oyunları yaptım. ' +
+      'Web tarafında Next.js, React ve Supabase ile inşaat ve site yönetimi için rol bazlı CRM panelleri, SEO odaklı kurumsal siteler geliştirdim; ' +
+      'Tauri ve Rust ile açık kaynak bir masaüstü uygulaması yayınladım. Temiz mimariye, performansa ve kullanıcı deneyimine önem veriyorum. ' +
+      'Şu an Sefa Grup’ta yazılım geliştirici olarak çalışıyor, Yönetim Bilişim Sistemleri okuyorum.',
     en:
-      'Game Developer with 3+ years of hands-on experience using Unreal Engine, specializing in gameplay systems, ' +
-      'AI behaviors, real-time simulations, and interactive 3D applications. Strong background in Souls-like combat ' +
-      'mechanics, boss AI design, character physics, and architectural visualization, combined with experience in ' +
-      'web development and Electron-based desktop tools. Currently studying Management Information Systems with a ' +
-      'Computer Programming background.',
+      'Software developer building since 2021, taking game and web products from first commit to release on my own. ' +
+      'With Unreal Engine I built Souls-like combat systems, boss AI and interactive architectural visualizations; ' +
+      'I shipped a server-authoritative multiplayer game in C++, and mobile puzzle, party and idle/tycoon games in Unity. ' +
+      'On the web I built role-based CRM dashboards for construction and property management with Next.js, React and Supabase, ' +
+      'plus SEO-focused business websites, and I released an open-source desktop app with Tauri and Rust. I care about clean architecture, ' +
+      'performance and user experience. I currently work as a software developer at Sefa Grup and study Management Information Systems.',
   },
   facts: [
-    { label: { tr: 'Deneyim', en: 'Experience' }, value: { tr: '3+ yıl', en: '3+ years' } },
-    { label: { tr: 'Ana motor', en: 'Main engine' }, value: 'Unreal Engine' },
-    { label: { tr: 'Uzmanlık', en: 'Specialty' }, value: 'Combat & Boss AI' },
+    { label: { tr: 'Deneyim', en: 'Experience' }, value: { tr: '5+ yıl', en: '5+ years' } },
+    { label: { tr: 'Odak', en: 'Focus' }, value: { tr: 'Oyun & Web', en: 'Games & Web' } },
+    { label: { tr: 'Teknolojiler', en: 'Stack' }, value: 'Unreal · Unity · Next.js' },
   ],
   portfolio: 'https://youtube.com/playlist?list=PLsEWusgi79Wlz8dn-76ZRFsHpWv1Zuahl',
   links: [
@@ -41,15 +43,86 @@ export const profile = {
       url: 'https://youtube.com/playlist?list=PLsEWusgi79Wlz8dn-76ZRFsHpWv1Zuahl',
     },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/furkan-uysal-41490321a/' },
+    { label: 'GitHub', url: 'https://github.com/furkanuysl' },
   ],
   cvPdf: '', // örn. './Furkan_Uysal_CV.pdf' (dosyayı public/ klasörüne koy) — boşsa buton gizlenir
 };
 
-const PRESENT = { tr: 'Şimdi', en: 'Present' };
+// Proje görselleri public/projects/ altında
+const shots = (name, nums) => nums.map((n) => `projects/${name}-${n}.webp`);
 
-// Oyun & Unreal projeleri (Atari makinesi bölgesi)
+// Oyun projeleri (Atari makinesi bölgesi)
 // icon: swords | brain | building | shirt | phone | person | rocket | globe | gamepad | code
 export const games = [
+  {
+    title: { tr: 'Kubiko: Mobil 3D Puzzle', en: 'Kubiko: Mobile 3D Puzzle' },
+    icon: 'gamepad',
+    year: '2026',
+    role: 'Freelance · Unity Developer',
+    tech: ['Unity', 'C#', 'URP', 'Unity Gaming Services'],
+    description: {
+      tr:
+        'Android/iOS için 6 yüzlü bir küp üzerinde oynanan, block-blast türünde sonsuz puzzle oyunu. Küp topolojisini ' +
+        'motordan bağımsız saf C# ile yazıp EditMode testleriyle doğruladım; katmanlı, olay tabanlı mimari, arcball dokunmatik ' +
+        'kontroller, online skor tablosu, kombo sistemi ve custom lava shader’ı geliştirdim.',
+      en:
+        'An endless block-blast puzzle for Android/iOS played on a six-faced cube. I wrote the cube topology as engine-independent ' +
+        'C# covered by EditMode tests, with a layered event-driven architecture, arcball touch controls, online leaderboards, ' +
+        'combos and a custom lava shader.',
+    },
+    images: shots('kubiko', [1, 2, 3, 4]),
+    link: '',
+  },
+  {
+    title: { tr: 'Cep Arenası: Mobil Parti Oyunu', en: 'Pocket Arena: Mobile Party Game' },
+    icon: 'gamepad',
+    year: '2026',
+    role: 'Freelance · Unity Developer',
+    tech: ['Unity 6', 'C#', 'Android', 'Bot AI'],
+    description: {
+      tr:
+        'Tek telefonda 4 kişiye kadar oynanan, 30 mini oyunlu yerel çok oyunculu parti oyunu. Eksik oyuncuların yerine geçen ' +
+        'bot yapay zekâsı, turnuva modu, açılabilir içerikler, TR/EN dil desteği ve ödüllü reklam altyapısı; 7.000+ satır C#.',
+      en:
+        'A local multiplayer party game for up to 4 players on one phone, with 30 mini-games. Bot AI fills in for missing players, ' +
+        'plus a tournament mode, unlockable content, TR/EN localization and rewarded ads, in 7,000+ lines of C#.',
+    },
+    images: shots('pocket', [1, 2, 3, 4]),
+    link: '',
+  },
+  {
+    title: { tr: 'Valet City: Idle Tycoon', en: 'Valet City: Idle Tycoon' },
+    icon: 'phone',
+    year: '2026',
+    role: 'Freelance · Unity Developer',
+    tech: ['Unity 6', 'C#', 'Event Bus', 'Object Pooling'],
+    description: {
+      tr:
+        'Oyuncunun vale otoparkları kurup büyüttüğü mobil idle/tycoon oyunu. ~24.000 satırlık modüler kod tabanı, çevrimdışı ' +
+        'kazanç ve prestij ekonomisi, trafik/yaya/vale yapay zekâsı, günlük görevler ve mobil optimizasyon.',
+      en:
+        'A mobile idle/tycoon game where players build and grow valet parking businesses. A ~24k-line modular codebase, offline ' +
+        'earnings and prestige economy, traffic/pedestrian/valet AI, daily tasks and mobile optimization.',
+    },
+    images: shots('valet', [6, 7, 8, 9]),
+    link: '',
+  },
+  {
+    title: { tr: 'BalloonAscent: Co-op Tırmanma', en: 'BalloonAscent: Co-op Climbing' },
+    icon: 'rocket',
+    year: '2026',
+    role: { tr: 'Kişisel proje · Gameplay Programmer', en: 'Personal project · Gameplay Programmer' },
+    tech: ['Unreal Engine 5', 'C++', 'Replication/RPC', 'Steam'],
+    description: {
+      tr:
+        'Tamamen C++ ile yazılmış, 10 oyuncuya kadar online co-op tırmanma oyunu. Sunucu otoriteli listen-server multiplayer ' +
+        've client prediction, bölgeye göre değişen çarpışma, rebirth/prestij ekonomisi, Steam lobi ve davetleri, botlu soak ve otomasyon testleri.',
+      en:
+        'An online co-op climbing game for up to 10 players, written entirely in C++. Server-authoritative listen-server multiplayer ' +
+        'with client prediction, zone-based collision, a rebirth/prestige economy, Steam lobbies and invites, and bot-driven soak and automation tests.',
+    },
+    link: '',
+  },
   {
     title: { tr: 'Souls-like Dövüş Sistemi', en: 'Souls-like Combat System' },
     icon: 'swords',
@@ -77,7 +150,7 @@ export const games = [
   {
     title: { tr: 'Etkileşimli Mimari Görselleştirme', en: 'Interactive Architectural Visualization' },
     icon: 'building',
-    year: { tr: '2025 – Şimdi', en: '2025 – Present' },
+    year: '2025',
     role: 'Configgo · Unreal Engine Developer',
     tech: ['Unreal Engine', 'Real-Time Lighting', 'Blueprint'],
     description: {
@@ -135,24 +208,123 @@ export const games = [
 // Web & masaüstü projeleri (Terminal bölgesi)
 export const apps = [
   {
+    title: { tr: 'İnşaat Yönetim Paneli', en: 'Construction Management Panel' },
+    icon: 'building',
+    kind: 'Sefa Grup · Web',
+    tech: ['Next.js 16', 'TypeScript', 'Supabase', 'Tailwind', 'shadcn/ui'],
+    description: {
+      tr:
+        'İnşaat firmaları için yönetim ve CRM paneli: daire ve blok yönetimi, müşteri takibi, satış ve tahsilat, ödeme planı ' +
+        'hesaplama, malzeme ve stok, satın alma ve şantiye arıza bildirimi. Rol bazlı erişim (Supabase RLS), mobilde PWA ve ' +
+        'koyu temalı “kontrol odası” arayüzü.',
+      en:
+        'A management and CRM dashboard for construction companies covering unit and block management, customer tracking, sales ' +
+        'and payment plans, inventory, purchasing and on-site issue reporting, with role-based access (Supabase RLS) and a mobile PWA.',
+    },
+    images: shots('insaat', [1, 2]),
+    link: '',
+  },
+  {
+    title: { tr: 'Site Yönetim Paneli', en: 'Apartment Complex Management' },
+    icon: 'building',
+    kind: 'Sefa Grup · Web',
+    tech: ['React 19', 'TypeScript', 'Cloudflare Workers', 'D1', 'Supabase', 'Recharts'],
+    description: {
+      tr:
+        'Çok bloklu bir sitenin kira, aidat, depozito, gelir-gider, şikâyet ve iş takibini tek panelde toplayan, canlıda çalışan ' +
+        'yönetim sistemi. Etkileşimli kat planları, TR/EN kiracı portalı ve WhatsApp ile yanıt, 4 rollü yetkilendirme, geri ' +
+        'alınabilir denetim kaydı ve 30+ uç noktalı REST API.',
+      en:
+        'A production management system for a multi-block residential complex: rent, dues, deposits, income/expenses, complaints ' +
+        'and tasks in one panel. Interactive floor plans, a TR/EN tenant portal with WhatsApp replies, 4-role access control, ' +
+        'a restorable audit log and a 30+ endpoint REST API.',
+    },
+    images: shots('apartman', [1, 2]),
+    link: 'https://kampusesenboga.com/',
+  },
+  {
+    title: { tr: '06 May Oto Elektrik', en: '06 May Auto Electric' },
+    icon: 'globe',
+    kind: 'Freelance · Web',
+    tech: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4'],
+    description: {
+      tr:
+        'Kocaeli’deki bir oto elektrik servisi için yerel müşteri kazanımına odaklı site: Schema.org yapısal veri ve 13 ilçelik ' +
+        'yerel SEO, TR/EN/AR dil desteği, WhatsApp’a bağlı teklif formu ve çerez onayından sonra yüklenen Analytics.',
+      en:
+        'A lead-generation website for an auto electrical shop in Kocaeli: Schema.org data and local SEO across 13 districts, ' +
+        'TR/EN/AR support, a WhatsApp quote form and consent-gated analytics.',
+    },
+    images: shots('otoelektrik', [1]),
+    link: 'https://sifiraltimayoto.com.tr',
+  },
+  {
+    title: { tr: 'Tayra Interactive', en: 'Tayra Interactive' },
+    icon: 'globe',
+    kind: 'Freelance · Web',
+    tech: ['React 19', 'Vite', 'SSR/Prerender', 'Canvas API', 'Vercel'],
+    description: {
+      tr:
+        'Ankara’daki 360° yaratıcı iletişim ajansının sitesi. Build sırasında SSR ile önceden oluşturulan hızlı ve SEO uyumlu ' +
+        'sayfalar, proje detay sayfaları, Canvas API ile kodlanmış logo ışık animasyonu, JSON-LD ve KVKK uyumlu çerez onayı.',
+      en:
+        'Website for a 360° creative agency in Ankara. Prerendered at build time for speed and SEO, with project detail pages, ' +
+        'a hand-coded Canvas API light animation around the logo, JSON-LD and cookie consent.',
+    },
+    images: shots('tayra', [1]),
+    link: 'https://tayrainteractive.com',
+  },
+  {
+    title: { tr: 'Tetik Yol Yardım', en: 'Tetik Roadside Assistance' },
+    icon: 'globe',
+    kind: 'Freelance · Web',
+    tech: ['Preact', 'Vite', 'Pre-render', 'GA4', 'Vercel'],
+    description: {
+      tr:
+        '2003’ten beri çalışan bir yol yardım firmasının sitesini sıfırdan tasarlayıp yayına aldım. Statik pre-render, teknik SEO ' +
+        '(JSON-LD, sitemap, canonical, llms.txt), izinle yüklenen GA4 dönüşüm takibi ve Vercel güvenlik başlıkları.',
+      en:
+        'Designed, built and launched a site for a roadside assistance company operating since 2003. Static pre-rendering, technical ' +
+        'SEO (JSON-LD, sitemap, canonical, llms.txt), consent-first GA4 conversion tracking and Vercel security headers.',
+    },
+    images: shots('tetik', [1]),
+    link: 'https://tetikyolyardim.com',
+  },
+  {
+    title: { tr: 'Mola: Masa Başı Sağlık Asistanı', en: 'Mola: Desk Health Companion' },
+    icon: 'code',
+    kind: { tr: 'Açık kaynak · Masaüstü', en: 'Open source · Desktop' },
+    tech: ['Tauri 2', 'Rust', 'React', 'TypeScript', 'GitHub Actions'],
+    description: {
+      tr:
+        'Windows için su ve hareket hatırlatıcısı olan sistem tepsisi uygulaması. Rust tarafında Windows API’leriyle boşta kalma ' +
+        've görüşme/tam ekran algılama (tuş/ses kaydı ve ağ isteği yok), odak zamanlayıcı, haftalık özet; installer ve winget ile dağıtım.',
+      en:
+        'A Windows tray app with water and movement reminders. A Rust backend uses Windows APIs to detect idle time, calls and ' +
+        'fullscreen apps (no keystrokes, audio or network), plus a focus timer and weekly summary; shipped via installer and winget.',
+    },
+    images: shots('mola', [1, 2, 3, 4]),
+    link: 'https://github.com/furkanuysl/Mola',
+  },
+  {
     title: { tr: 'Masaüstü Oyun Launcher', en: 'Desktop Game Launcher' },
     icon: 'rocket',
-    kind: { tr: 'Masaüstü', en: 'Desktop' },
+    kind: { tr: 'Configgo · Masaüstü', en: 'Configgo · Desktop' },
     tech: ['Electron.js', 'JavaScript'],
     description: {
-      tr: "Uygulama başlatma ve sürüm yönetimini üstlenen, sıfırdan geliştirilmiş özel oyun launcher'ı (Configgo).",
-      en: 'A custom desktop game launcher built from scratch, handling application launch and version management (Configgo).',
+      tr: "Uygulama başlatma ve sürüm yönetimini üstlenen, sıfırdan geliştirilmiş özel oyun launcher'ı.",
+      en: 'A custom desktop game launcher built from scratch, handling application launch and version management.',
     },
     link: '',
   },
   {
     title: { tr: 'Front-End Web Uygulamaları', en: 'Front-End Web Applications' },
     icon: 'globe',
-    kind: 'Web',
+    kind: 'Freelance · Web',
     tech: ['Nuxt.js', 'JavaScript'],
     description: {
-      tr: 'Modüler ve sürdürülebilir mimariye odaklanan front-end web uygulamaları (Freelance, 2023 – 2025).',
-      en: 'Front-end web applications focused on modular and maintainable architecture (Freelance, 2023 – 2025).',
+      tr: 'Modüler ve sürdürülebilir mimariye odaklanan front-end web uygulamaları (2023 – 2025).',
+      en: 'Front-end web applications focused on modular and maintainable architecture (2023 – 2025).',
     },
     link: '',
   },
@@ -162,31 +334,68 @@ export const apps = [
 // İstersen bir öğeye level: 0-100 ekleyebilirsin; oyundaki panelde ilerleme çubuğu olarak gösterilir.
 export const skills = [
   {
-    group: { tr: 'Oyun Motorları', en: 'Game Engines' },
-    items: [{ name: 'Unreal Engine' }, { name: 'Blueprints' }, { name: 'Gameplay Systems' }, { name: 'AI' }, { name: 'Physics' }, { name: 'Lighting' }],
-  },
-  {
-    group: { tr: 'Oynanış & Sistemler', en: 'Gameplay & Systems' },
+    group: { tr: 'Oyun Geliştirme', en: 'Game Development' },
     items: [
-      { name: 'Souls-like Combat Systems' },
-      { name: 'Boss AI (Behavior Trees, State Machines)' },
-      { name: 'Character Movement & Physics' },
-      { name: 'Cloth & Hair Simulation' },
-      { name: 'Real-Time Lighting & Environment Simulation' },
+      { name: 'Unreal Engine (C++, Blueprint)' },
+      { name: 'Unity (C#)' },
+      { name: 'Multiplayer (Replication, RPC, Steam)' },
+      { name: 'Gameplay AI (Behavior Trees, State Machines)' },
+      { name: { tr: 'Combat, Fizik & Oyun Hissi', en: 'Combat, Physics & Game Feel' } },
+      { name: { tr: 'Mobil Optimizasyon', en: 'Mobile Optimization' } },
     ],
   },
   {
-    group: { tr: 'Web, Araçlar & 3D', en: 'Web, Tools & 3D' },
-    items: [{ name: 'JavaScript' }, { name: 'Nuxt.js' }, { name: 'Electron.js' }, { name: { tr: 'Blender (Animasyon)', en: 'Blender (Animation)' } }],
+    group: { tr: 'Web & Full-Stack', en: 'Web & Full-Stack' },
+    items: [
+      { name: 'TypeScript / JavaScript' },
+      { name: 'React, Next.js, Nuxt.js' },
+      { name: 'Supabase, PostgreSQL, Cloudflare D1' },
+      { name: 'Tailwind CSS, shadcn/ui' },
+      { name: { tr: 'SEO, SSR & Pre-render', en: 'SEO, SSR & Pre-rendering' } },
+      { name: 'Vercel, Cloudflare Workers' },
+    ],
+  },
+  {
+    group: { tr: 'Masaüstü, Araçlar & 3D', en: 'Desktop, Tools & 3D' },
+    items: [
+      { name: 'Tauri 2 & Rust' },
+      { name: 'Electron.js' },
+      { name: 'Git, GitHub Actions (CI)' },
+      { name: { tr: 'Otomasyon & Birim Testleri', en: 'Automation & Unit Testing' } },
+      { name: { tr: 'Blender (Animasyon)', en: 'Blender (Animation)' } },
+    ],
   },
 ];
 
 // Deneyim (Deniz feneri bölgesi)
 export const experience = [
   {
+    role: { tr: 'Yazılım Geliştirici', en: 'Software Developer' },
+    company: 'Sefa Grup',
+    period: { tr: '2026 — Şimdi', en: '2026 — Present' },
+    points: [
+      {
+        tr: 'İnşaat firmaları için daire/blok, müşteri, satış-tahsilat, ödeme planı, stok, satın alma ve şantiye arıza modüllerini kapsayan rol bazlı bir yönetim ve CRM paneli geliştirdim (Next.js 16, TypeScript, Supabase).',
+        en: 'Built a role-based management and CRM dashboard for construction companies covering units/blocks, customers, sales and collections, payment plans, inventory, purchasing and on-site issue reporting (Next.js 16, TypeScript, Supabase).',
+      },
+      {
+        tr: 'Kampüs Esenboğa Evleri için kira, aidat, depozito, gelir-gider ve şikâyet takibini tek panelde toplayan site yönetim sistemini geliştirip canlıya aldım (kampusesenboga.com).',
+        en: 'Built and launched the property management system for Kampüs Esenboğa Evleri, bringing rent, dues, deposits, finances and complaints into one panel (kampusesenboga.com).',
+      },
+      {
+        tr: 'Kiracıların giriş yapmadan talep bırakıp telefon doğrulamasıyla takip edebildiği TR/EN kiracı portalı ve WhatsApp üzerinden yanıt akışı kurdum.',
+        en: 'Built a TR/EN tenant portal where tenants submit and track requests with phone verification, plus a WhatsApp reply flow for staff.',
+      },
+      {
+        tr: 'Rol bazlı yetkilendirme, geri alınabilir denetim kaydı, snapshot yedekleme ve mobilde PWA desteği ekledim.',
+        en: 'Added role-based permissions, a restorable audit log, snapshot backups and mobile PWA support.',
+      },
+    ],
+  },
+  {
     role: 'Unreal Engine Developer',
     company: 'Configgo',
-    period: { tr: '2025 — Şimdi', en: '2025 — Present' },
+    period: '2025',
     points: [
       {
         tr: 'Kullanıcıların daire seçip iç mekâna girebildiği ve kontrol edilebilir bir karakterle serbestçe gezebildiği etkileşimli mimari görselleştirme uygulamaları geliştirdim.',
@@ -211,25 +420,29 @@ export const experience = [
     ],
   },
   {
-    role: 'Front-End Developer & 3D Character Animator',
+    role: { tr: 'Freelance Yazılım Geliştirici', en: 'Freelance Software Developer' },
     company: 'Freelance',
-    period: '2023 — 2025',
+    period: { tr: '2023 — Şimdi', en: '2023 — Present' },
     points: [
+      {
+        tr: 'Unity ve C# ile mobil oyunlar geliştirdim: 3D küp puzzle Kubiko, 30 mini oyunlu parti oyunu Cep Arenası ve ~24.000 satırlık idle/tycoon oyunu Valet City.',
+        en: 'Built mobile games in Unity and C#: the 3D cube puzzle Kubiko, the 30-mini-game party game Pocket Arena and the ~24k-line idle/tycoon game Valet City.',
+      },
+      {
+        tr: 'İşletmeler için SEO odaklı kurumsal siteler geliştirip yayına aldım: 06 May Oto Elektrik (Next.js), Tayra Interactive (React, SSR) ve Tetik Yol Yardım (Preact, pre-render).',
+        en: 'Built and launched SEO-focused business websites: 06 May Auto Electric (Next.js), Tayra Interactive (React, SSR) and Tetik Roadside Assistance (Preact, pre-rendering).',
+      },
+      {
+        tr: 'Tauri 2 ve Rust ile açık kaynak masaüstü uygulaması Mola’yı geliştirdim; GitHub Actions ile CI kurup installer ve winget üzerinden dağıttım.',
+        en: 'Built the open-source desktop app Mola with Tauri 2 and Rust, with GitHub Actions CI and releases via installer and winget.',
+      },
       {
         tr: 'JavaScript ve Nuxt.js ile modüler, sürdürülebilir mimariye sahip front-end web uygulamaları geliştirdim.',
         en: 'Developed frontend web applications using JavaScript and Nuxt.js, focusing on modular and maintainable architecture.',
       },
       {
-        tr: "Blender'da yürüme/koşma, aksiyon ve etkileşim karakter animasyonları oluşturdum.",
-        en: 'Created character animations in Blender, including locomotion, action, and interaction animations.',
-      },
-      {
-        tr: 'Animasyonlu 3D varlıkları gerçek zamanlı ve etkileşimli ortamlara entegre ettim.',
-        en: 'Integrated animated 3D assets into real-time and interactive environments.',
-      },
-      {
-        tr: 'Temel animasyon prensiplerini uygulayarak cilalı ve inandırıcı karakter hareketleri elde ettim.',
-        en: 'Applied core animation principles to achieve polished and believable character motion.',
+        tr: "Blender'da yürüme/koşma, aksiyon ve etkileşim karakter animasyonları oluşturup gerçek zamanlı ortamlara entegre ettim.",
+        en: 'Created locomotion, action and interaction character animations in Blender and integrated them into real-time environments.',
       },
     ],
   },

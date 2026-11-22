@@ -18,6 +18,10 @@ export const icon = {
 };
 
 const tags = (arr) => `<ul class="tags">${arr.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
+const shots = (p) =>
+  p.images?.length
+    ? `<div class="shots" data-gallery>${p.images.map((src, i) => `<a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(p.title)} ${i + 1}" loading="lazy"></a>`).join('')}</div>`
+    : '';
 const linkBtn = (url, label) =>
   url ? `<a class="btn btn--ghost btn--sm" href="${esc(url)}" target="_blank" rel="noopener">${esc(label)} ${icon.ext}</a>` : '';
 
@@ -50,6 +54,7 @@ function gamesHTML() {
       <article class="card">
         <header class="card__head"><h3>${esc(g.title)}</h3><span class="muted">${esc(g.year)}</span></header>
         <p class="card__role">${esc(g.role)}</p>
+        ${shots(g)}
         <p>${esc(g.description)}</p>
         ${tags(g.tech)}
         ${linkBtn(g.link, t('playView'))}
@@ -64,6 +69,7 @@ function appsHTML() {
       (a) => `
       <article class="card">
         <header class="card__head"><h3>${esc(a.title)}</h3><span class="badge">${esc(a.kind)}</span></header>
+        ${shots(a)}
         <p>${esc(a.description)}</p>
         ${tags(a.tech)}
         ${linkBtn(a.link, t('view'))}

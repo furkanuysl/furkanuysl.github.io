@@ -6,6 +6,7 @@ import { createPlayer } from './player.js';
 import { createInput } from './input.js';
 import { initAudio, sfx, isMuted, setMuted } from './audio.js';
 import { createPanel, toast } from './ui.js';
+import './lightbox.js';
 import { L, t, getLang, setLang, onLangChange } from './i18n.js';
 
 const $ = (id) => document.getElementById(id);
